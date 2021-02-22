@@ -20,6 +20,17 @@ class CreateAlbumsTable extends Migration
             $table->integer('year');
             $table->timestamps();
         });
+
+        $data = [
+            ['title'=> 'Random Access Memories', 'artist'=> 'Daft Punk', 'year' => 2013],
+            ['title'=> 'Discovery', 'artist'=> 'Daft Punk', 'year' => 2001],
+            ['title'=> 'Chunky Shrapnel', 'artist'=> 'King Gizzard and the Lizard Wizard', 'year' => 2020],
+            ['title'=> 'Out of the Blue', 'artist'=> ' Electric Light Orchestra', 'year' => 1977],
+            ['title'=> 'Every Open Eye', 'artist'=> 'Chvrches', 'year' => 2015],
+        ];
+
+        DB::table('albums')->insert($data); // Query Builder approach
+      
     }
 
     /**

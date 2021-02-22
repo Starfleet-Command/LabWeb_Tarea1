@@ -18,6 +18,14 @@ class CreateGenresTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        $data = [
+            ['name'=> 'Electronic'],
+            ['name'=> 'Rock'],
+            ['name'=> 'Pop'],
+        ];
+
+        DB::table('genres')->insert($data); // Query Builder approach
     }
 
     /**

@@ -14,12 +14,27 @@ class CreateAlbumGenreTable extends Migration
     public function up()
     {
         Schema::create('album_genre', function (Blueprint $table) {
-            $table->unsignedBigInteger('album_id');
             $table->unsignedBigInteger('genre_id');
             $table->foreign('genre_id')->references('id')->on('genres');
+            $table->unsignedBigInteger('album_id');
             $table->foreign('album_id')->references('id')->on('albums');
             $table->timestamps();
         });
+
+        //Electronic_id =  1    Rock_id = 2     Pop_id= 3
+        //DP1 = 1   DP2 = 2     cs = 3      OotB = 4    EOE = 5
+        $data = [
+            ['genre_id'=> 1, 'album_id'=> 1],
+            ['genre_id'=> 1, 'album_id'=> 2],
+            ['genre_id'=> 2, 'album_id'=> 3],
+            ['genre_id'=> 2, 'album_id'=> 4],
+            ['genre_id'=> 2, 'album_id'=> 5],
+            ['genre_id'=> 3, 'album_id'=> 4],
+            ['genre_id'=> 3, 'album_id'=> 5],
+
+        ];
+
+        DB::table('album_genre')->insert($data); // Query Builder approach
     }
 
     /**
