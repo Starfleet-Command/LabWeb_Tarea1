@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Album_has_Genre extends Model
+class Song extends Model
 {
     //
 }
