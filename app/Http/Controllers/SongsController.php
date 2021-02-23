@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Song;
+
 class SongsController extends Controller
 {
     /**
@@ -13,7 +15,8 @@ class SongsController extends Controller
      */
     public function index()
     {
-        //
+        $songs = Song::all();
+        return view('songs.index', ['songs' => $songs]);
     }
 
     /**
@@ -23,7 +26,7 @@ class SongsController extends Controller
      */
     public function create()
     {
-        //
+        return view('songs.create');
     }
 
     /**
@@ -34,7 +37,13 @@ class SongsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $arr = $request->input();
+        $song = new Song();
+        $song->name = $arr['name'];
+        $song->duration = $arr['duration'];
+        $song->album_id = $arr['album_id'];
+        $song->save();
+        return redirect()->route('songs.index');
     }
 
     /**
@@ -43,9 +52,9 @@ class SongsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Song $song)
     {
-        //
+        return view('songs.show', ['song' => $song]);
     }
 
     /**
@@ -54,9 +63,9 @@ class SongsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Song $song)
     {
-        //
+        return view('songs.edit', ['song' => $song]);
     }
 
     /**
@@ -66,9 +75,14 @@ class SongsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Song $song)
     {
-        //
+        $arr = $request->input();
+        $song->name = $arr['name'];
+        $song->duration = $arr['duration'];
+        $song->album_id = $arr['album_id'];
+        $song->save();
+        return redirect()->route('songs.index');
     }
 
     /**
@@ -77,8 +91,9 @@ class SongsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Song $song)
     {
-        //
+        $song->delete();
+        return redirect()->route('songs.index');
     }
 }
