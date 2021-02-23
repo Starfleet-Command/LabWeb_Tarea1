@@ -44,4 +44,39 @@
         @endforeach
     </tbody>
 </table>
+<br>
+<br>
+<table>
+<thead>
+        <tr>
+            <th>#</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($genres as $item)
+            <tr>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->name }}</td>
+                <td> 
+                    <form action="{{ route('albums.deGenre', ['album' => $album, 'genre' => ($item->id)]) }}" method="post">
+                        @csrf
+                        <input type="submit" value="Delete">
+                    </form> 
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
+<h4>Add a Genre here!</h4>
+<form action="{{ route('albums.reGenre', ['album' => $album]) }}" method="POST">
+    @csrf
+    <div>
+        <label for="">Genre Id</label>
+        <input type="number" name="id">
+        <input type="submit" value="Add">
+    </div>
+         
+</form>
 @endsection

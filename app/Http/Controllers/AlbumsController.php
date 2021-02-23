@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Genre;
 use App\Models\Album;
 use App\Models\Song;
 
@@ -56,8 +57,9 @@ class AlbumsController extends Controller
     public function show(Album $album)
     {
         $songs = $album->songs()->paginate(20);
+        $genres = $album->genres()->paginate(20);
         //dd($albums);
-        return view('albums.show', ['album' => $album, 'songs' => $songs]);
+        return view('albums.show', ['album' => $album, 'songs' => $songs, 'genres' => $genres]);
     }
 
     /**
@@ -98,5 +100,21 @@ class AlbumsController extends Controller
     {
         $album->delete();
         return redirect()->route('albums.index');
+    }
+
+    public function deGenre(Album $album, $id_genre )
+    {
+        $album->genres()->detach($id_genre);
+        //dd($album);
+        return back();
+    }
+
+    public function reGenre(Album $album, Request $request )
+    {
+        $arr = $request->input();
+        $id = $arr['id'];
+        $album->genres()->attach($id);
+        //dd($album);
+        return back();
     }
 }

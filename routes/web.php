@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AlbumsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +23,6 @@ Route::get('/', function () {
 Route::resource('albums', 'AlbumsController');
 Route::resource('genres', 'GenresController');
 Route::resource('songs', 'SongsController');
+Route::post('/albums/deGenre/{album}/{genre}', [AlbumsController::class, 'deGenre'])->name('albums.deGenre');
+Route::post('/albums/reGenre/{album}', [AlbumsController::class, 'reGenre'])->name('albums.reGenre');
+
