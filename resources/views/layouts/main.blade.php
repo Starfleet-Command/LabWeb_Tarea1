@@ -7,9 +7,9 @@
     <title>Mi sitio web</title>
 </head>
 <body>
-<!--
-    <h1> Este es el Main </h1>
--->
+    <button><a href="{{ route('genres.index') }}"> Genres</a></button>
+    <button><a href="{{ route('albums.index') }}"> Albums</a> </button>
+    <button><a href="{{ route('songs.index') }}"> Songs</a> </button>
     @yield('content')
 </body>
 </html>

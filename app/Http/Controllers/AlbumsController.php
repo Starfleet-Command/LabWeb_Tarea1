@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Album;
+use App\Models\Song;
 
 class AlbumsController extends Controller
 {
@@ -54,7 +55,9 @@ class AlbumsController extends Controller
      */
     public function show(Album $album)
     {
-        return view('albums.show', ['album' => $album]);
+        $songs = $album->songs()->paginate(20);
+        //dd($albums);
+        return view('albums.show', ['album' => $album, 'songs' => $songs]);
     }
 
     /**

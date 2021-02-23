@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Genre;
+use App\Models\Album;
 
 class GenresController extends Controller
 {
@@ -52,7 +53,9 @@ class GenresController extends Controller
      */
     public function show(Genre $genre)
     {
-        return view('genres.show', ['genre' => $genre]);
+        $albums = $genre->albums()->paginate(20);
+        //dd($albums);
+        return view('genres.show', ['genre' => $genre, 'albums' => $albums]);
     }
 
     /**
