@@ -15,9 +15,9 @@ class CreateAlbumGenreTable extends Migration
     {
         Schema::create('album_genre', function (Blueprint $table) {
             $table->unsignedBigInteger('genre_id');
-            $table->foreign('genre_id')->references('id')->on('genres');
+            $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade');
             $table->unsignedBigInteger('album_id');
-            $table->foreign('album_id')->references('id')->on('albums');
+            $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
             $table->timestamps();
         });
 

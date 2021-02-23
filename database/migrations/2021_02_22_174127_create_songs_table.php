@@ -18,7 +18,7 @@ class CreateSongsTable extends Migration
             $table->string('name');
             $table->string('duration');
             $table->unsignedBigInteger('album_id');
-            $table->foreign('album_id')->references('id')->on('albums');
+            $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
             $table->timestamps();
         });
 
