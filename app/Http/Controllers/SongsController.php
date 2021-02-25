@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Song;
+use App\Models\Album;
 
 class SongsController extends Controller
 {
@@ -26,7 +27,8 @@ class SongsController extends Controller
      */
     public function create()
     {
-        return view('songs.create');
+        $allalbums = Album::all();
+        return view('songs.create', ['allalbums' => $allalbums]);
     }
 
     /**

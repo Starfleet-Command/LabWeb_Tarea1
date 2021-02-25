@@ -58,8 +58,9 @@ class AlbumsController extends Controller
     {
         $songs = $album->songs()->paginate(20);
         $genres = $album->genres()->paginate(20);
+        $allgenres = Genre::all();
         //dd($albums);
-        return view('albums.show', ['album' => $album, 'songs' => $songs, 'genres' => $genres]);
+        return view('albums.show', ['album' => $album, 'songs' => $songs, 'genres' => $genres, 'allgenres' => $allgenres]);
     }
 
     /**
@@ -114,7 +115,7 @@ class AlbumsController extends Controller
         $arr = $request->input();
         $id = $arr['id'];
         $album->genres()->attach($id);
-        //dd($album);
+        //dd($arr);
         return back();
     }
 }

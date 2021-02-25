@@ -14,7 +14,11 @@
     </div>
     <div>
         <label for="">Album Id</label>
-        <input type="number" name="album_id">
+        <select name="album_id" id="album_id">
+        @foreach ($allalbums as $item)
+        <option value="{{$item->id}}">{{ $item->title }} - {{$item->artist}}</options>
+        @endforeach
+        </select>
     </div>
     <div>
         <input type="submit" value="Store">

@@ -74,7 +74,11 @@
     @csrf
     <div>
         <label for="">Genre Id</label>
-        <input type="number" name="id">
+        <select name="id" id="id">
+        @foreach ($allgenres as $item)
+        <option value="{{$item->id}}">{{ $item->name }}</options>
+        @endforeach
+        </select>
         <input type="submit" value="Add">
     </div>
          
